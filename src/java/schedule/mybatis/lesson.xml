@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "lesson">
+     
+    <resultMap id = "resultLesson" type = "schedule.model.Lesson"> 
+       <result property = "id" column = "id"/> 
+       <result property = "idGroup" column = "idGroup"/> 
+       <result property = "day" column = "day"/> 
+       <result property = "timeStart" column = "timeStart"/> 
+	   <result property = "timeEnd" column = "timeEnd"/> 
+       <result property = "idTrainer" column = "idTrainer"/> 
+    </resultMap> 
+
+    <select id = "selectAll" resultMap = "resultLesson"> 
+       SELECT * FROM lesson  
+    </select> 
+ 
+    <select id = "selectById" parameterType = "int" resultMap = "resultLesson"> 
+       SELECT * FROM lesson WHERE id = #{id}; 
+    </select> 
+    
+    <insert id = "insert" parameterType = "schedule.model.Lesson"> 
+       INSERT INTO lesson (idGroup, day, timeStart,timeEnd, idTrainer)
+       VALUES (#{idGroup}, #{day}, #{timeStart}, #{timeEnd}, #{idTrainer});     
+    </insert>
+    
+    <update id = "update" parameterType = "schedule.model.Lesson"> 
+       UPDATE lesson SET 
+        idGroup = #{idGroup}, 
+	day = #{day}, 
+        timeStart = #{timeStart},
+		timeEnd = #{timeEnd},
+        idTrainer = #{idTrainer}
+        WHERE id = #{id}; 
+    </update>
+
+    <delete id = "delete" parameterType = "int"> 
+       DELETE from lesson WHERE id = #{id}; 
+    </delete>
+</mapper> 
+
+

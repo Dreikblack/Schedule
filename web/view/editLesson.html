@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Редактирование занятия</title>
+    <link href="../lib/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/css/style.css" rel="stylesheet">
+    <script src="../service/GroupService.js"></script>
+    <script src="../controllers/GroupController.js"></script>
+    <script src="../service/LessonService.js"></script>
+    <script src="../controllers/LessonController.js"></script>
+    <script src="../controllers/TrainerController.js"></script>
+    <script src="../service/TrainerService.js"></script>
+    <script>
+        function $_GET(key) {
+        var p = window.location.search;
+        p = p.match(new RegExp(key + '=([^&=]+)'));
+        return p ? p[1] : false;
+        }
+        function cancelClick()
+        {
+              window.location.href = 'admin.html';
+        }
+        function submitClick()
+        {
+          var group = document.getElementById('group').value;
+          var day = document.getElementById('day').value;
+          var timeStart = document.getElementById('timeStart').value;
+          var timeEnd = document.getElementById('timeEnd').value;
+          var trainer = document.getElementById('trainer').value;
+          var controller = new LessonController();
+          var id = $_GET('id');
+          controller.updateLesson(id,group,day,timeStart,timeEnd,trainer);
+          window.location.href = 'admin.html';
+        }
+    </script>
+    <style>
+body {
+    background-color: #ddf0f0;
+}
+</style>
+    </head>
+    <body>
+        <div id="header" class="container">
+        <div class="row">
+             <div class ="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+             <h1><center>Редактирование занятия</center></h1>
+             </div>
+        </div>
+    </div>
+    <div id="main" class="container">
+  
+        <div id="groups"></div>
+        <p>
+<select id='day'>
+  <option>Понедельник</option>
+  <option>Вторник</option>
+  <option>Среда</option>
+  <option>Четверг</option>
+  <option>Пятница</option>
+  <option>Суббота</option>
+  <option>Воскресенье</option>
+</select>        
+        <p>Время занятия:<input type="time" id="timeStart"><input type="time" id="timeEnd">
+        <p>
+        <div id="trainers"></div>
+        <p>
+        <div onclick='submitClick()' class='btn btn-default'>Принять изменения</div>
+        <p>
+        <div onclick='cancelClick()' class='btn btn-default'>Отмена</div>
+    </div>
+    <script src="../lib/js/jquery.min.js"></script>
+    <script src="../lib/js/bootstrap.min.js"></script>
+    <script> 
+        $(window).load(function() 
+        {
+         var groupController = new GroupController();
+         groupController.getGroupAllViewSelect();
+         var trainerController = new TrainerController();
+         trainerController.getTrainerAllViewSelect();
+        }
+        );
+    </script>
+    </body>
+</html>

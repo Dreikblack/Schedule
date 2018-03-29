@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "group">
+    
+    <resultMap id = "resultGroup" type = "schedule.model.Group"> 
+       <result property = "id" column = "id"/> 
+       <result property = "name" column = "name"/> 
+       <result property = "place" column = "place"/> 
+       <collection property="lesson" javaType="List"  ofType="schedule.model.Lesson" column="id" select="selectLesson"/>
+    </resultMap> 
+
+    <select id = "selectAll" resultMap = "resultGroup"> 
+        SELECT * FROM `group` WHERE 1;  
+    </select> 
+ 
+    <select id = "selectById" parameterType = "int" resultMap = "resultGroup"> 
+        SELECT * FROM `group` WHERE id = #{id}; 
+    </select> 
+    
+   <select id="selectLesson" parameterType="int" resultMap="lesson.resultLesson">  
+        SELECT * FROM lesson WHERE idGroup = #{id};
+   </select>
+   
+   <insert id = "insert" parameterType = "schedule.model.Group"> 
+       INSERT INTO `group` (name, place)  
+       VALUES (#{name}, #{place});     
+    </insert>
+    
+    <delete id = "delete" parameterType = "int"> 
+       DELETE from `group` WHERE id = #{id}; 
+    </delete>
+</mapper> 
+
