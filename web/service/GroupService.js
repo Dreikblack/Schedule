@@ -1,5 +1,26 @@
 class GroupService
 {
+    insertGroup(name, place)
+    {
+       var request = new XMLHttpRequest();
+       var jsonObj = {
+           name:name,
+           place:place
+       };
+        var jsonStr = JSON.stringify(jsonObj) ;
+        request.open('GET','/schedule/InsertGroup?json='+jsonStr, false);
+        request.send();
+        if (request.status !== 200)
+        {
+            alert(request.status + ":" + request.statusText);
+            return null;
+        } else
+        {
+            var res = JSON.parse(request.responseText);
+            return res;
+        }
+    }
+    
     getGroupAll()
     {
         var request = new XMLHttpRequest();

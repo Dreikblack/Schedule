@@ -6,6 +6,46 @@ class GroupController
        return groupService.getGroupAll();
     }
     
+    insertGroupAddButton()
+    {
+      var groupsView=document.getElementById("groups");
+      var addGr="<div class='row'><div onclick='addGroupClick()' class='btn btn-default col-md-12'>Добавить группу</div></div>";
+      groupsView.innerHTML += addGr;
+    }
+    
+    insertGroup(name, place)
+    {
+        var complete=true;
+        var name_bl=document.getElementById("name_block");
+        var name_ti=document.getElementById("name_tip");
+        var place_bl=document.getElementById("place_block");
+        var place_ti=document.getElementById("place_tip");
+            name_bl.classList.remove('has-error');
+            name_ti.innerHTML=place_ti.innerHTML="";
+            place_bl.classList.remove('has-error');
+       if(!name) {
+            name_bl.classList.add('has-error');
+            name_ti.innerHTML="Поле с названием не заполнено";
+            complete=false;
+       }
+       if(!place) {
+            place_bl.classList.add('has-error');
+            place_ti.innerHTML="Поле с местом проведения не заполнено";
+            complete=false;
+       }
+       var groupService = new GroupService();
+       var groups = groupService.getGroupAll();
+            for(var i=0; i<groups.length;i++)  {
+            if (groups[i].name===name) {
+                name_bl.classList.add('has-error');
+                name_ti.innerHTML="Группа с идентичным названием уже существует";
+                complete=false;
+            }
+        }
+        if(complete) groupService.insertGroup(name, place);
+    return complete;
+    }
+    
     getGroupAllViewButton()
     {
         var groups = this.getGroupAll();
