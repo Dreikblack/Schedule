@@ -46,6 +46,13 @@ class GroupController
     return complete;
     }
     
+    deleteGroup(id)
+    {
+        var groupService = new GroupService();
+        groupService.deleteGroup(id);
+        window.location.href = 'admin.html';
+    }
+    
     getGroupAllViewButton()
     {
         var groups = this.getGroupAll();
@@ -150,9 +157,11 @@ class GroupController
         var trainerService = new TrainerService();
         var lessonView=document.getElementById("lesson");
         var result="";
-        result+= "<div class='row'><div onclick='addLessonClick()' class='btn btn-default col-md-12'>Добавить занятие</div></div>";
+        result+= "<div class='row'><div onclick='deleteGroupClick("+id+")' class='btn btn-default col-md-12'>Удалить группу</div></div>\n\
+        <div class='row'><div onclick='addLessonClick()' class='btn btn-default col-md-12'>Добавить занятие</div></div>";
         lesson = lesson.sort(function(a,b) {return a.day-b.day;});
-       
+        var group = this.getGroupById(id);
+        document.getElementById("group_tip").innerHTML=group.name;
         for(var i=0; i<lesson.length;i++)
         {
             var id = lesson[i].id;

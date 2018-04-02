@@ -23,6 +23,13 @@
         {
              window.location.href = 'addGroup.html';
         }
+        function deleteGroupClick(id)
+        {
+            if (confirm("Удалить данную группу?")) {
+            var controller = new GroupController();
+            controller.deleteGroup(id);
+            }
+        }
         function addLessonClick()
         {
              window.location.href = 'addLesson.html';
@@ -50,6 +57,7 @@ body {
              <h1>
                  <center>Страница администратора</center>
              </h1>
+             <h4><center id="group_tip">Выберите или создайте группу</center></h4>
              </div>
         </div>
     </div>

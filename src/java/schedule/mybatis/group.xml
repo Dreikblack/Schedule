@@ -27,6 +27,10 @@
        VALUES (#{name}, #{place});     
     </insert>
     
+    <delete id = "delete_lesson" parameterType = "int"> 
+       DELETE from lesson WHERE idGroup= #{id};
+    </delete>
+    
     <delete id = "delete" parameterType = "int"> 
        DELETE from `group` WHERE id = #{id}; 
     </delete>

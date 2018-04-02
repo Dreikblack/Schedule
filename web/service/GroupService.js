@@ -21,6 +21,23 @@ class GroupService
         }
     }
     
+    deleteGroup(id)
+    {
+        var request = new XMLHttpRequest();
+
+        request.open('GET', '/schedule/DeleteGroup?id=' + id, false);
+        request.send();
+        if (request.status !== 200)
+        {
+            alert(request.status + ":" + request.statusText);
+            return null;
+        } else
+        {
+            var res = JSON.parse(request.responseText);
+            return res;
+        }
+    }
+    
     getGroupAll()
     {
         var request = new XMLHttpRequest();
