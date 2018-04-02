@@ -14,7 +14,7 @@ class LessonController
        var trainerService = new TrainerService();
        var trainers = trainerService.getTrainerAll();
        var idTrainer = 0;
-       for(var i=0; i<groups.length;i++)
+       for(var i=0; i<trainers.length;i++)
         {
             if (trainers[i].name===trainer)
             {
@@ -41,7 +41,7 @@ class LessonController
         var trainerService = new TrainerService();
        var trainers = trainerService.getTrainerAll();
        var idTrainer = 0;
-       for(var i=0; i<groups.length;i++)
+       for(var i=0; i<trainers.length;i++)
         {
             if (trainers[i].name===trainer)
             {

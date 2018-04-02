@@ -41,7 +41,6 @@ class LessonService
          var jsonStr = JSON.stringify(jsonObj) ;
         request.open('GET','/schedule/UpdateLesson?json='+jsonStr, false);
         request.send();
-        alert(idGroup);
         if (request.status !== 200)
         {
             alert(request.status + ":" + request.statusText);
@@ -60,7 +59,6 @@ class LessonService
 
         request.open('GET', '/schedule/DeleteLesson?id=' + id, false);
         request.send();
-
         if (request.status !== 200)
         {
             alert(request.status + ":" + request.statusText);
