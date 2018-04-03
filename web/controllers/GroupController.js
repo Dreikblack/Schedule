@@ -13,7 +13,7 @@ class GroupController
       groupsView.innerHTML += addGr;
     }
     
-    insertGroup(name, place)
+    checkGroup(name, place) 
     {
         var complete=true;
         var name_bl=document.getElementById("name_block");
@@ -43,30 +43,22 @@ class GroupController
                 break;
             }
         }
-        if(complete) groupService.insertGroup(name, place);
+        return complete;
+    }
+    
+    insertGroup(name, place)
+    {
+        var complete=this.checkGroup(name, place);
+        if(complete) {
+            var groupService = new GroupService();
+            groupService.insertGroup(name, place);
+        }
     return complete;
     }
     
     updateGroup(id, name, place)
     {
-        var complete=true;
-        var name_bl=document.getElementById("name_block");
-        var name_ti=document.getElementById("name_tip");
-        var place_bl=document.getElementById("place_block");
-        var place_ti=document.getElementById("place_tip");
-            name_bl.classList.remove('has-error');
-            name_ti.innerHTML=place_ti.innerHTML="";
-            place_bl.classList.remove('has-error');
-       if(!name) {
-            name_bl.classList.add('has-error');
-            name_ti.innerHTML="Поле с названием не заполнено";
-            complete=false;
-       }
-       if(!place) {
-            place_bl.classList.add('has-error');
-            place_ti.innerHTML="Поле с местом проведения не заполнено";
-            complete=false;
-       }
+       var complete=this.checkGroup(name, place);
        if(complete) {
            var groupService = new GroupService();
            groupService.updateGroup(id, name, place);

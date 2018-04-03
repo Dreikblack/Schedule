@@ -13,6 +13,7 @@
     <script src="../service/LessonService.js"></script>
     <script src="../controllers/LessonController.js"></script>
     <script src="../service/TrainerService.js"></script>
+    <script src="../controllers/TrainerController.js"></script>
     <script>
         function groupClick(id)
         {
@@ -47,6 +48,10 @@
         {
             window.location.href = 'editLesson.html?id='+id;
         }
+        function trainerClick()
+        {
+            window.location.href = 'trainers.html';
+        }
     </script>
     <style>
 body {
@@ -75,11 +80,12 @@ body {
     <script src="../lib/js/jquery.min.js"></script>
     <script src="../lib/js/bootstrap.min.js"></script>
     <script> 
-        $(window).load(function() 
-        {
-            var controller = new GroupController();
-            controller.getGroupAllViewButton();
-            controller.insertGroupAddButton();
+        $(window).load(function() {
+                var groupController = new GroupController();
+                var trainerController = new TrainerController();
+                groupController.getGroupAllViewButton();
+                groupController.insertGroupAddButton();
+                trainerController.insertTrainerButton();
         }
         );
     </script>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Тренеры</title>
+    <link href="../lib/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/css/style.css" rel="stylesheet">
+    <script src="../service/TrainerService.js"></script>
+    <script src="../controllers/TrainerController.js"></script>
+    <script>
+        function backClick()
+        {
+              window.location.href = 'admin.html';
+        }
+        function addTrainerClick()
+        {
+            window.location.href = 'addTrainer.html';
+        }
+        function editTrainerClick(id)
+        {
+            window.location.href = 'editTrainer.html?id='+id;
+        }
+        function deleteTrainerClick(id)
+        {
+            if (confirm("Удалить данного тренера из списка?\nВнимание, все связанные занятия будут также удалены.")) {
+            var trainerController = new TrainerController();
+            trainerController.deleteTrainer(id);
+            }
+        }
+    </script>
+    <style>
+body {
+    background-color: #ddf0f0;
+}
+</style>
+    </head>
+    <body>
+        <button type="button" class="btn btn-default"><a href = "admin.html">Назад</a></button>
+        <div id="header" class="container">
+        <div class="row">
+             <div class ="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+             <h1><center>Тренеры</center></h1>
+             </div>
+        </div>
+    </div>
+    <div id="main" class="container">
+        <p>
+        <div id="trainer"></div>
+    </div>
+    <script src="../lib/js/jquery.min.js"></script>
+    <script src="../lib/js/bootstrap.min.js"></script>
+    <script>
+        $(window).load(function() {
+                var trainerController = new TrainerController();
+                trainerController.getTrainerList();
+            }
+        );
+    </script>
+    </body>
+</html>

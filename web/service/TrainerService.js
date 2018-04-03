@@ -55,4 +55,61 @@ class TrainerService
             return trainer.lesson;
         }
     }
+    
+    insertTrainer(name)  {
+       var request = new XMLHttpRequest();
+       var jsonObj = {
+           name:name
+       };
+        var jsonStr = JSON.stringify(jsonObj) ;
+        request.open('GET','/schedule/InsertTrainer?json='+jsonStr, false);
+        request.send();
+        if (request.status !== 200)
+        {
+            alert(request.status + ":" + request.statusText);
+            return null;
+        } else
+        {
+            var res = JSON.parse(request.responseText);
+            return res;
+        }
+    }
+    
+    updateTrainer(id, name)
+    {
+       var request = new XMLHttpRequest();
+       var jsonObj = {
+           id:id,
+           name:name
+       };
+        var jsonStr = JSON.stringify(jsonObj) ;
+        request.open('GET','/schedule/UpdateTrainer?json='+jsonStr, false);
+        request.send();
+        if (request.status !== 200)
+        {
+            alert(request.status + ":" + request.statusText);
+            return null;
+        } else
+        {
+            var res = JSON.parse(request.responseText);
+            return res;
+        }
+    }
+    
+    deleteTrainer(id)
+    {
+        var request = new XMLHttpRequest();
+
+        request.open('GET', '/schedule/DeleteTrainer?id=' + id, false);
+        request.send();
+        if (request.status !== 200)
+        {
+            alert(request.status + ":" + request.statusText);
+            return null;
+        } else
+        {
+            var res = JSON.parse(request.responseText);
+            return res;
+        }
+    }
 }

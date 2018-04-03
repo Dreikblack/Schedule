@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/WebServers/home/schedule/web/view/addLesson.html</file>
-            <file>file:/C:/WebServers/home/schedule/src/java/schedule/model/Group.java</file>
-            <file>file:/C:/WebServers/home/schedule/web/view/editLesson.html</file>
-            <file>file:/C:/WebServers/home/schedule/src/java/mappers/JsonLessonMapper.java</file>
+            <file>file:/C:/WebServers/home/schedule/web/controllers/TrainerController.js</file>
             <file>file:/C:/WebServers/home/schedule/web/view/admin.html</file>
-            <file>file:/C:/WebServers/home/schedule/src/java/schedule/api/InsertLesson.java</file>
-            <file>file:/C:/WebServers/home/schedule/web/service/LessonService.js</file>
+            <file>file:/C:/WebServers/home/schedule/web/controllers/GroupController.js</file>
+            <file>file:/C:/WebServers/home/schedule/web/view/trainers.html</file>
         </group>
     </open-files>
 </project-private>

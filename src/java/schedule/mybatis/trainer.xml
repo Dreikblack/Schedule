@@ -23,8 +23,18 @@
    
    <insert id = "insert" parameterType = "schedule.model.Trainer"> 
        INSERT INTO `trainer` (name)  
-       VALUES (#{name}});     
+       VALUES (#{name});  
     </insert>
+    
+    <update id = "update" parameterType = "schedule.model.Trainer"> 
+        UPDATE `trainer` SET
+        `name`=#{name}
+        WHERE id = #{id}; 
+    </update>
+    
+    <delete id = "delete_lesson" parameterType = "int"> 
+       DELETE from lesson WHERE idTrainer= #{id};
+    </delete>
     
     <delete id = "delete" parameterType = "int"> 
        DELETE from `trainer` WHERE id = #{id}; 
