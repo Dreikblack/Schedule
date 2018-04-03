@@ -27,6 +27,13 @@
        VALUES (#{name}, #{place});     
     </insert>
     
+    <update id = "update" parameterType = "schedule.model.Group">        
+        UPDATE `group` SET
+        `name`=#{name},
+        `place`=#{place}
+        WHERE id = #{id};
+    </update>
+    
     <delete id = "delete_lesson" parameterType = "int"> 
        DELETE from lesson WHERE idGroup= #{id};
     </delete>

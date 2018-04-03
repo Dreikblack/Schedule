@@ -40,9 +40,37 @@ class GroupController
                 name_bl.classList.add('has-error');
                 name_ti.innerHTML="Группа с идентичным названием уже существует";
                 complete=false;
+                break;
             }
         }
         if(complete) groupService.insertGroup(name, place);
+    return complete;
+    }
+    
+    updateGroup(id, name, place)
+    {
+        var complete=true;
+        var name_bl=document.getElementById("name_block");
+        var name_ti=document.getElementById("name_tip");
+        var place_bl=document.getElementById("place_block");
+        var place_ti=document.getElementById("place_tip");
+            name_bl.classList.remove('has-error');
+            name_ti.innerHTML=place_ti.innerHTML="";
+            place_bl.classList.remove('has-error');
+       if(!name) {
+            name_bl.classList.add('has-error');
+            name_ti.innerHTML="Поле с названием не заполнено";
+            complete=false;
+       }
+       if(!place) {
+            place_bl.classList.add('has-error');
+            place_ti.innerHTML="Поле с местом проведения не заполнено";
+            complete=false;
+       }
+       if(complete) {
+           var groupService = new GroupService();
+           groupService.updateGroup(id, name, place);
+       }
     return complete;
     }
     
@@ -157,7 +185,8 @@ class GroupController
         var trainerService = new TrainerService();
         var lessonView=document.getElementById("lesson");
         var result="";
-        result+= "<div class='row'><div onclick='deleteGroupClick("+id+")' class='btn btn-default col-md-12'>Удалить группу</div></div>\n\
+        result+= "<div class='row'><div onclick='editGroupClick("+id+")' class='btn btn-default col-md-12'>Редактировать группу</div></div>\n\
+        <div class='row'><div onclick='deleteGroupClick("+id+")' class='btn btn-default col-md-12'>Удалить группу</div></div>\n\
         <div class='row'><div onclick='addLessonClick()' class='btn btn-default col-md-12'>Добавить занятие</div></div>";
         lesson = lesson.sort(function(a,b) {return a.day-b.day;});
         var group = this.getGroupById(id);
