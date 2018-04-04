@@ -77,7 +77,7 @@ body {
         $(window).load(function() 
         {
          var groupController = new GroupController();
-         groupController.getGroupAllViewSelect();
+         groupController.getGroupAllViewSelect($_GET("idGroup"));
          var trainerController = new TrainerController();
          trainerController.getTrainerAllViewSelect();
         }

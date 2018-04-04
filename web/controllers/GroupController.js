@@ -104,17 +104,16 @@ class GroupController
         groupsView.innerHTML = result;
     }
     
-     getGroupAllViewSelect() 
+     getGroupAllViewSelect(idGroup) 
     {    
-        
         var groups = this.getGroupAll();
         var groupsView=document.getElementById("groups");
-        
+        var selected;
         var result="<select id='group'>";
         for(var i=0; i<groups.length;i++)
         {
-            
-            result+= "<option>"+groups[i].name+"</option>";
+            selected=(groups[i].id==idGroup)?' selected':'';
+            result+= "<option"+selected+">"+groups[i].name+"</option>";
         }
         result+="</select>";
         groupsView.innerHTML = result;
@@ -179,7 +178,7 @@ class GroupController
         var result="";
         result+= "<div class='row'><div onclick='editGroupClick("+id+")' class='btn btn-default col-md-12'>Редактировать группу</div></div>\n\
         <div class='row'><div onclick='deleteGroupClick("+id+")' class='btn btn-default col-md-12'>Удалить группу</div></div>\n\
-        <div class='row'><div onclick='addLessonClick()' class='btn btn-default col-md-12'>Добавить занятие</div></div>";
+        <div class='row'><div onclick='addLessonClick("+id+")' class='btn btn-default col-md-12'>Добавить занятие</div></div>";
         lesson = lesson.sort(function(a,b) {return a.day-b.day;});
         var group = this.getGroupById(id);
         document.getElementById("group_tip").innerHTML=group.name;
@@ -194,7 +193,7 @@ class GroupController
              result+= "<div class='row'>\n\
             <div onclick='lessonClick("+ lesson[i].id+")' class='btn btn-default col-md-8'>"
                     +day+". Время: "+time+". Тренер: "+trainerName+"</div>\n\
-<div onclick='editLessonClick("+ lesson[i].id+")' class='btn btn-default col-md-2'>Редактировать</div>\n\
+<div onclick='editLessonClick("+ lesson[i].id+","+lesson[i].idGroup+")' class='btn btn-default col-md-2'>Редактировать</div>\n\
 <div onclick='deleteLessonClick("+ lesson[i].id+")' class='btn btn-default col-md-2'>Удалить</div></div>";
         }
         lessonView.innerHTML = result;

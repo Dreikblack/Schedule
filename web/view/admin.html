@@ -35,18 +35,18 @@
             controller.deleteGroup(id);
             }
         }
-        function addLessonClick()
+        function addLessonClick(idGroup)
         {
-             window.location.href = 'addLesson.html';
+             window.location.href = 'addLesson.html?idGroup='+idGroup;
         }
         function deleteLessonClick(id)
         {
             var controller = new LessonController();
             controller.deleteLesson(id);
         }
-         function editLessonClick(id)
+         function editLessonClick(id, idGroup)
         {
-            window.location.href = 'editLesson.html?id='+id;
+            window.location.href = 'editLesson.html?id='+id+'&idGroup='+idGroup;
         }
         function trainerClick()
         {
