@@ -32,7 +32,7 @@
           var trainer = document.getElementById('trainer').value;
           var controller = new LessonController();
           var id = $_GET('id');
-          controller.updateLesson(id,group,day,timeStart,timeEnd,trainer);
+          if (controller.updateLesson(id,group,day,timeStart,timeEnd,trainer))
           window.location.href = 'admin.html';
         }
     </script>
@@ -64,6 +64,7 @@ body {
   <option>Воскресенье</option>
 </select>        
         <p>Время занятия:<input type="time" id="timeStart"><input type="time" id="timeEnd">
+        <p id="time_tip" class="help-block" style="color:#a94442"></p>
         <p>
         <div id="trainers"></div>
         <p>

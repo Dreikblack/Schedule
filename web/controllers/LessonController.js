@@ -1,6 +1,13 @@
 class LessonController 
 {
-     insertLesson(group,day,timeStart,timeEnd,trainer)     {
+    
+     insertLesson(group,day,timeStart,timeEnd,trainer)    
+     {
+       document.getElementById("time_tip").innerHTML="";
+       if(!timeStart || !timeEnd) {
+           document.getElementById("time_tip").innerHTML="Укажите время";
+           return false;
+       }
        var groupService = new GroupService();
        var groups = groupService.getGroupAll();
        var idGroup = 0;
@@ -25,9 +32,15 @@ class LessonController
         var newTimeStart = timeStart+":00";
         var newTimeEnd = timeEnd+":00";
         lessonService.insertLesson(idGroup,day,newTimeStart,newTimeEnd,idTrainer);
+        return true;
     }
     
     updateLesson(id, group,day,timeStart,timeEnd,trainer)     {
+       document.getElementById("time_tip").innerHTML="";
+       if(!timeStart || !timeEnd) {
+           document.getElementById("time_tip").innerHTML="Укажите время";
+           return false;
+       }
        var groupService = new GroupService();
        var groups = groupService.getGroupAll();
        var idGroup = 0;
@@ -52,7 +65,7 @@ class LessonController
         var newTimeEnd = timeEnd+":00";
         var lessonService = new LessonService();
         lessonService.updateLesson(id,idGroup,day,newTimeStart,newTimeEnd,idTrainer);
-        window.location.href = 'admin.html';
+        return true;
     }
     
     deleteLesson(id)
