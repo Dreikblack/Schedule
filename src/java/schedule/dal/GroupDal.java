@@ -50,7 +50,6 @@ public class GroupDal extends BaseDal
     {
       SqlSession session = sqlSessionFactory.openSession();
       session.delete("group.delete_lesson",id);
-      session.commit();
       int count =  session.delete("group.delete",id);
       session.commit();
       session.close();
